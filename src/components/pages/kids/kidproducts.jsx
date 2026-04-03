@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ProductCard from '../productCard';
+import Loader from '../../ui/loader';
 
 const Kidproducts = () => {
   const [kidItems, setkidItems] = useState([]); 
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setLoading(true);
         const queryParams = new URLSearchParams(location.search);
         const subCategory = queryParams.get('subCategory');
         let url = "https://elon-backend-1111.onrender.com/api/products/kids";
@@ -19,14 +22,17 @@ const Kidproducts = () => {
 
         const response = await fetch(url);
         const data = await response.json();
-        console.log("data", data);
         setkidItems(data.AllProduct || data); 
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
   }, [location.search]);
+
+  if (loading) return <Loader />;
 
   return (
     <ProductCard category={kidItems}></ProductCard>

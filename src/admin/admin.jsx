@@ -232,7 +232,7 @@ const Admin = () => {
                            <span className="text-sm font-bold text-gray-800">₹{p.price}</span>
                          </div>
                          <h3 className="font-bold text-base leading-tight mb-2 text-gray-900 line-clamp-1">{p.title}</h3>
-                         <p className="text-gray-500 text-xs line-clamp-2 leading-relaxed">{p.description}</p>
+                         <p className="text-gray-500 text-xs line-clamp-1">{p.description?.slice(0, 50)}...</p>
                       </div>
                       
                       {/* Action Overlay */}

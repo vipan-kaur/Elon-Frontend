@@ -62,7 +62,7 @@ const SingleProductCard = ({ product }) => {
           {product.title}
         </h5>
         <p className='text-xs'>ELON COUTURE</p>
-        <p className='text-xs'>{product.description}</p>
+        <p className='text-xs'>{product.description?.slice(0, 80)}...</p>
         <p className='text-xs font-semibold'>₹ {product.price}</p>
         <div className='flex gap-7 mb-3'>
           <Link to={`/view/${product._id}`}>

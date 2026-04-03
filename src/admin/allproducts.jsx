@@ -2,23 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import Loader from '../components/ui/loader'
 
 const Allproducts = () => {
   const [data, setdata] = useState([])
+  const [loading, setLoading] = useState(true)
   const [hoverIndex, setHoverIndex] = useState({}) // track image index per product
 
   useEffect(() => {
     const getall = async () => {
       try {
+        setLoading(true)
         const response = await fetch("https://elon-backend-1111.onrender.com/api/products")
         const result = await response.json()
         setdata(result.product || [])
       } catch (error) {
         console.error("Error fetching products:", error)
+      } finally {
+        setLoading(false)
       }
     }
     getall()
   }, [])
+
+  if (loading) return <Loader />
 
   const handleIn = (id, imagesLength) => {
     if (imagesLength > 1) {
@@ -67,7 +74,7 @@ const Allproducts = () => {
                   </h5>
 
                   <p className="text-xs">ELON COUTURE</p>
-                  <p className="text-xs line-clamp-2">{product.description}</p>
+                  <p className="text-xs">{product.description?.slice(0, 80)}...</p>
                   <p className="text-xs font-semibold">₹ {product.price}</p>
 
                   <div className="flex gap-7 mb-3">

@@ -121,7 +121,7 @@ const Men = () => {
         <Typography variant="h4" className="font-serif text-center mb-10 text-neutral-800">Shop by Category</Typography>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
            <Link to="/menproducts?subCategory=formal" className="relative h-[300px] md:h-[400px] overflow-hidden group cursor-pointer rounded-xl shadow-sm">
-             <img src="https://images.unsplash.com/photo-1594938298596-eb5fd3822758?auto=format&fit=crop&q=80&w=1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Suits" />
+             <img src="https://images.unsplash.com/photo-1507679799987-c73774573b94?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Suits" />
              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
                <Typography variant="h5" className="text-white font-serif tracking-widest">FORMAL WEAR</Typography>
                <Typography className="text-white/80 text-xs mt-2 uppercase tracking-widest">Discover</Typography>

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Box, Container } from '@mui/material';
 import { motion } from 'framer-motion';
+import Loader from '../ui/loader';
 
 const TrendingSection = () => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTrending = async () => {
@@ -14,11 +16,14 @@ const TrendingSection = () => {
                 setProducts(result.product?.slice(0, 4) || []);
             } catch (error) {
                 console.error("Error fetching trending products:", error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchTrending();
     }, []);
 
+    if (loading) return <Loader />;
     if (products.length === 0) return null;
 
     return (
