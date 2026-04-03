@@ -10,7 +10,7 @@ const Allproducts = () => {
   useEffect(() => {
     const getall = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/products")
+        const response = await fetch("https://elon-backend-1111.onrender.com/api/products")
         const result = await response.json()
         setdata(result.product || [])
       } catch (error) {
@@ -56,7 +56,7 @@ const Allproducts = () => {
                 <img
                   onMouseEnter={() => handleIn(product._id, product.images?.length)}
                   onMouseLeave={() => handleOut(product._id)}
-                  src={product.images && product.images.length > 0 ? `http://localhost:3000/uploads/${product.images?.[index]}` : "https://via.placeholder.com/330x200?text=No+Image"}
+                  src={product.images && product.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${product.images?.[index]}` : "https://via.placeholder.com/330x200?text=No+Image"}
                   alt={product.title}
                   className="w-full h-[200px] object-cover"
                 />

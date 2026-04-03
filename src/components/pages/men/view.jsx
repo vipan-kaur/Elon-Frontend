@@ -25,7 +25,7 @@ const View = () => {
   useEffect(() => {
     const getbyid = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/getById/${id}`)
+        const res = await axios.get(`https://elon-backend-1111.onrender.com/api/getById/${id}`)
         setData(res.data)   
       } catch (err) {
         console.log(err)
@@ -50,7 +50,7 @@ const View = () => {
       name: product.title,
       price: product.price,
       description: product.description,
-      image: product.images && product.images.length > 0 ? `http://localhost:3000/uploads/${product.images[0]}` : "https://via.placeholder.com/300?text=No+Image"
+      image: product.images && product.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${product.images[0]}` : "https://via.placeholder.com/300?text=No+Image"
     };
 
     if (isWishlisted) {
@@ -65,7 +65,7 @@ const View = () => {
       id: product._id,
       name: product.title,
       price: product.price,
-      image: product.images && product.images.length > 0 ? `http://localhost:3000/uploads/${product.images[0]}` : "https://via.placeholder.com/300?text=No+Image",
+      image: product.images && product.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${product.images[0]}` : "https://via.placeholder.com/300?text=No+Image",
       quantity: quantity,
       size: selectedSize
     }));
@@ -91,7 +91,7 @@ const View = () => {
                    <SwiperSlide key={idx} className="flex justify-center items-center">
                      <img
                        className="w-full h-[400px] md:h-[600px] object-contain"
-                       src={`http://localhost:3000/uploads/${img}`}   
+                       src={`https://elon-backend-1111.onrender.com/uploads/${img}`}   
                        alt={`${product.title} - view ${idx+1}`}
                      />
                    </SwiperSlide> 

@@ -40,7 +40,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/products");
+      const { data } = await axios.get("https://elon-backend-1111.onrender.com/api/products");
       setProducts(data.product || []);
     } catch (err) {
       console.log(err.message);
@@ -101,7 +101,7 @@ const Admin = () => {
           category: product.category,
           subCategory: product.subCategory
         };
-        await axios.put(`http://localhost:3000/api/updateProduct/${editingId}`, payload);
+        await axios.put(`https://elon-backend-1111.onrender.com/api/updateProduct/${editingId}`, payload);
         alert("Product updated successfully!");
       } else {
         // CREATE MODE
@@ -113,7 +113,7 @@ const Admin = () => {
         formData.append("subCategory", product.subCategory);
         if (product.image) formData.append("image", product.image);
 
-        await axios.post("http://localhost:3000/api/createProduct", formData, {
+        await axios.post("https://elon-backend-1111.onrender.com/api/createProduct", formData, {
           headers: { "Content-Type": "multipart/form-data" }
         });
         alert("Product created successfully!");
@@ -132,7 +132,7 @@ const Admin = () => {
   const handleDelete = async (id) => {
     if(window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://localhost:3000/api/deleteProduct/${id}`);
+        await axios.delete(`https://elon-backend-1111.onrender.com/api/deleteProduct/${id}`);
         fetchProducts(); 
       } catch (err) {
         console.log(err.message);
@@ -222,7 +222,7 @@ const Admin = () => {
              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((p) => (
                    <div key={p._id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col relative group hover:shadow-md transition-all">
-                      <img src={p.images && p.images.length > 0 ? `http://localhost:3000/uploads/${p.images[0]}` : "https://via.placeholder.com/300?text=No+Image"} alt={p.title} className="w-full h-48 object-cover object-top" />
+                      <img src={p.images && p.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${p.images[0]}` : "https://via.placeholder.com/300?text=No+Image"} alt={p.title} className="w-full h-48 object-cover object-top" />
                       <div className="p-4 flex flex-col flex-grow">
                          <div className="flex justify-between items-start mb-2 gap-2">
                            <div className="flex gap-1 flex-wrap">

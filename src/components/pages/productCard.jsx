@@ -53,7 +53,7 @@ const SingleProductCard = ({ product }) => {
       <img
         onMouseEnter={product.images?.length > 1 ? handleIn : undefined}
         onMouseLeave={product.images?.length > 1 ? handleOut : undefined}
-        src={product.images && product.images.length > 0 ? `http://localhost:3000/uploads/${product.images[index]}` : "https://via.placeholder.com/330x200?text=No+Image"}
+        src={product.images && product.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${product.images[index]}` : "https://via.placeholder.com/330x200?text=No+Image"}
         alt={product.title}
         className="w-full h-[200px] object-cover"
       />

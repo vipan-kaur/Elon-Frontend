@@ -34,7 +34,7 @@ const Admin = () => {
       formData.append("rating", product.rating);
       if (product.image) formData.append("image", product.image);
 
-      await axios.post("http://localhost:3000/api/createProduct", formData, {
+      await axios.post("https://elon-backend-1111.onrender.com/api/createProduct", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 

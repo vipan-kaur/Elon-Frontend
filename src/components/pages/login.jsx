@@ -91,7 +91,7 @@ const Login = () => {
     try {
       if (showOtp) {
         // Handle OTP Verification
-        const response = await axios.post("http://localhost:3000/api/auth/verify", {
+        const response = await axios.post("https://elon-backend-1111.onrender.com/api/auth/verify", {
           email: formData.email,
           otp: formData.otp
         });
@@ -102,8 +102,8 @@ const Login = () => {
       }
 
       const url = isLogin
-        ? "http://localhost:3000/api/auth/login"
-        : "http://localhost:3000/api/auth/signup";
+        ? "https://elon-backend-1111.onrender.com/api/auth/login"
+        : "https://elon-backend-1111.onrender.com/api/auth/signup";
 
       const payload = isLogin
         ? { email: formData.email, password: formData.password }

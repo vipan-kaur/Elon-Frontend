@@ -33,7 +33,7 @@ const Profile = () => {
       const id = userData._id;
 
       try {
-        const res = await axios.get(`http://localhost:3000/api/auth/profile/${id}`);
+        const res = await axios.get(`https://elon-backend-1111.onrender.com/api/auth/profile/${id}`);
         setUser(res.data.user);
         setNewName(res.data.user.name);
       } catch (err) {
@@ -57,7 +57,7 @@ const Profile = () => {
         formData.append("profilePic", imgFile);
       }
 
-      const res = await axios.put(`http://localhost:3000/api/auth/update-profile/${user._id}`, formData, {
+      const res = await axios.put(`https://elon-backend-1111.onrender.com/api/auth/update-profile/${user._id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
@@ -77,7 +77,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       if (window.confirm("Are you sure you want to log out?")) {
-        await axios.post("http://localhost:3000/api/auth/logout");
+        await axios.post("https://elon-backend-1111.onrender.com/api/auth/logout");
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         navigate("/login");
@@ -127,7 +127,7 @@ const Profile = () => {
           <div className="flex-shrink-0 relative group z-10">
              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-white ring-8 ring-gray-50/50 border-4 border-white shadow-2xl shadow-gray-300/50 flex items-center justify-center text-gray-200 overflow-hidden relative aspect-square">
                 {user.profilePic ? (
-                  <img src={`http://localhost:3000/uploads/${user.profilePic}`} alt="Profile" className="w-full h-full object-cover rounded-full" />
+                  <img src={`https://elon-backend-1111.onrender.com/uploads/${user.profilePic}`} alt="Profile" className="w-full h-full object-cover rounded-full" />
                 ) : (
                   <AccountCircleIcon style={{ fontSize: 160 }} />
                 )}

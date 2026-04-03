@@ -9,7 +9,7 @@ const TrendingSection = () => {
     useEffect(() => {
         const fetchTrending = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/products");
+                const response = await fetch("https://elon-backend-1111.onrender.com/api/products");
                 const result = await response.json();
                 setProducts(result.product?.slice(0, 4) || []);
             } catch (error) {
@@ -52,7 +52,7 @@ const TrendingSection = () => {
                             <Link to={`/view/${product._id}`}>
                                 <div className="relative overflow-hidden aspect-[3/4] bg-neutral-100 mb-6">
                                     <img 
-                                        src={`http://localhost:3000/uploads/${product.images?.[0]}`} 
+                                        src={`https://elon-backend-1111.onrender.com/uploads/${product.images?.[0]}`} 
                                         alt={product.title}
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />

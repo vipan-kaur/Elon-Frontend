@@ -11,7 +11,7 @@ const Kidproducts = () => {
       try {
         const queryParams = new URLSearchParams(location.search);
         const subCategory = queryParams.get('subCategory');
-        let url = "http://localhost:3000/api/products/kids";
+        let url = "https://elon-backend-1111.onrender.com/api/products/kids";
         
         if (subCategory) {
           url += `?subCategory=${subCategory}`;
