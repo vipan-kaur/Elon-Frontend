@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Typography, Box, Container } from '@mui/material';
 import { motion } from 'framer-motion';
 import Loader from '../ui/loader';
+import { API_ENDPOINTS } from '../../config/apiConfig';
 
 const TrendingSection = () => {
     const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ const TrendingSection = () => {
     useEffect(() => {
         const fetchTrending = async () => {
             try {
-                const response = await fetch("https://elon-backend-1111.onrender.com/api/products");
+                const response = await fetch(API_ENDPOINTS.GET_PRODUCTS);
                 const result = await response.json();
                 setProducts(result.product?.slice(0, 4) || []);
             } catch (error) {

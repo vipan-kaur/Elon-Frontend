@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../config/axiosConfig';
 import { Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
 const subCategoriesMap = {
   men: [
@@ -40,7 +41,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("https://elon-backend-1111.onrender.com/api/products");
+      const { data } = await axiosInstance.get(API_ENDPOINTS.GET_PRODUCTS);
       setProducts(data.product || []);
     } catch (err) {
       console.log(err.message);
@@ -101,7 +102,7 @@ const Admin = () => {
           category: product.category,
           subCategory: product.subCategory
         };
-        await axios.put(`https://elon-backend-1111.onrender.com/api/updateProduct/${editingId}`, payload);
+        await axiosInstance.put(API_ENDPOINTS.UPDATE_PRODUCT(editingId), payload);
         alert("Product updated successfully!");
       } else {
         // CREATE MODE
@@ -113,7 +114,7 @@ const Admin = () => {
         formData.append("subCategory", product.subCategory);
         if (product.image) formData.append("image", product.image);
 
-        await axios.post("https://elon-backend-1111.onrender.com/api/createProduct", formData, {
+        await axiosInstance.post(API_ENDPOINTS.CREATE_PRODUCT, formData, {
           headers: { "Content-Type": "multipart/form-data" }
         });
         alert("Product created successfully!");
@@ -132,13 +133,34 @@ const Admin = () => {
   const handleDelete = async (id) => {
     if(window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`https://elon-backend-1111.onrender.com/api/deleteProduct/${id}`);
+        await axiosInstance.delete(API_ENDPOINTS.DELETE_PRODUCT(id));
         fetchProducts(); 
       } catch (err) {
         console.log(err.message);
       }
     }
   };
+
+  const adminKey = localStorage.getItem("adminKey");
+
+  // Check if admin key exists
+  if (!adminKey) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-6 md:p-12 md:mt-24 flex items-center justify-center">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
+          <Typography variant="h5" className="font-serif font-bold text-gray-800 mb-4">
+            🔒 Access Denied
+          </Typography>
+          <Typography className="text-gray-600 mb-6">
+            You don't have admin access. Please contact your administrator.
+          </Typography>
+          <a href="/" className="bg-black text-white px-6 py-2 rounded font-semibold hover:bg-neutral-800 transition-all">
+            Go Home
+          </a>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-12 md:mt-24">
@@ -222,7 +244,7 @@ const Admin = () => {
              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products.map((p) => (
                    <div key={p._id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col relative group hover:shadow-md transition-all">
-                      <img src={p.images && p.images.length > 0 ? `https://elon-backend-1111.onrender.com/uploads/${p.images[0]}` : "https://via.placeholder.com/300?text=No+Image"} alt={p.title} className="w-full h-48 object-cover object-top" />
+                      <img src={p.images && p.images.length > 0 ? `${API_ENDPOINTS.GET_PRODUCTS.replace('/api/products', '')}/uploads/${p.images[0]}` : "https://via.placeholder.com/300?text=No+Image"} alt={p.title} className="w-full h-48 object-cover object-top" />
                       <div className="p-4 flex flex-col flex-grow">
                          <div className="flex justify-between items-start mb-2 gap-2">
                            <div className="flex gap-1 flex-wrap">

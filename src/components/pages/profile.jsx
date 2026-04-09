@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../../config/axiosConfig";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 import { Typography, Button } from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -33,7 +34,7 @@ const Profile = () => {
       const id = userData._id;
 
       try {
-        const res = await axios.get(`https://elon-backend-1111.onrender.com/api/auth/profile/${id}`);
+        const res = await axiosInstance.get(API_ENDPOINTS.AUTH_PROFILE(id));
         setUser(res.data.user);
         setNewName(res.data.user.name);
       } catch (err) {
@@ -57,7 +58,7 @@ const Profile = () => {
         formData.append("profilePic", imgFile);
       }
 
-      const res = await axios.put(`https://elon-backend-1111.onrender.com/api/auth/update-profile/${user._id}`, formData, {
+      const res = await axiosInstance.put(API_ENDPOINTS.AUTH_UPDATE_PROFILE(user._id), formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
@@ -77,7 +78,7 @@ const Profile = () => {
   const handleLogout = async () => {
     try {
       if (window.confirm("Are you sure you want to log out?")) {
-        await axios.post("https://elon-backend-1111.onrender.com/api/auth/logout");
+        await axiosInstance.post(API_ENDPOINTS.AUTH_LOGOUT);
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         navigate("/login");

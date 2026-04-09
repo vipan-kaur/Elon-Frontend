@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import Loader from '../components/ui/loader'
+import { API_ENDPOINTS } from '../config/apiConfig';
 
 const Allproducts = () => {
   const [data, setdata] = useState([])
@@ -13,7 +14,7 @@ const Allproducts = () => {
     const getall = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://elon-backend-1111.onrender.com/api/products")
+        const response = await fetch(API_ENDPOINTS.GET_PRODUCTS)
         const result = await response.json()
         setdata(result.product || [])
       } catch (error) {

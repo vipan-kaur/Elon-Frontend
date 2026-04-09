@@ -64,22 +64,21 @@ const Kids = () => {
               className="w-full h-full object-cover h-full"
             />
           </div>
-          <div className="w-full md:w-1/2 flex items-center justify-center p-10 md:p-20 bg-neutral-50/30">
-            <div className="max-w-md text-center md:text-left">
+          <div className="w-full md:w-1/2 flex items-center  justify-center bg-neutral-50/30">
+            <div className="max-w-md text-center md:text-left ">
               <Typography variant="overline" className="text-gray-400 tracking-[0.4em] mb-4 block">PURE COMFORT</Typography>
               <Typography variant="h3" className="font-serif text-3xl md:text-4xl mb-6 leading-tight">Elevate Their Style. <br /> Define Their Confidence.</Typography>
               <Typography className="mb-10 text-gray-500 leading-relaxed font-light text-sm md:text-base">
                 Discover premium essentials designed for early explorations. From organic cotton basics to meticulously detailed outerwear for the little ones.
               </Typography>
-              <Link to="/Kidproducts"><button className="px-12 py-4 bg-black text-white text-[10px] uppercase tracking-[0.3em] font-black hover:bg-neutral-800 transition-all shadow-lg active:scale-95">SHOP NOW</button></Link>
+              <Link to="/Kidproducts"><button className="px-12 py-4 mt-5 bg-black text-white text-[10px] uppercase tracking-[0.3em] font-black hover:bg-neutral-800 transition-all shadow-lg active:scale-95">SHOP NOW</button></Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* NEW SECTION: Trending Categories */}
       <div className="w-full px-6 md:px-12 pb-12 z-20 relative">
-        <Typography variant="h4" className="font-serif text-center mb-10 text-neutral-800">Shop by Category</Typography>
+        <Typography variant="h4" className="font-serif text-center p-10 text-neutral-800">Shop by Category</Typography>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link to="/Kidproducts?subCategory=toddlers" className="relative h-[300px] md:h-[400px] overflow-hidden group cursor-pointer rounded-xl shadow-sm">
             <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Toddlers" />

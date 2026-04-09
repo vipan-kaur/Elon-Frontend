@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../config/axiosConfig";
+import { API_ENDPOINTS } from "../../config/apiConfig";
 import {
   Box,
   Button,
@@ -91,7 +92,7 @@ const Login = () => {
     try {
       if (showOtp) {
         // Handle OTP Verification
-        const response = await axios.post("https://elon-backend-1111.onrender.com/api/auth/verify", {
+        const response = await axiosInstance.post(API_ENDPOINTS.AUTH_VERIFY, {
           email: formData.email,
           otp: formData.otp
         });
@@ -102,14 +103,14 @@ const Login = () => {
       }
 
       const url = isLogin
-        ? "https://elon-backend-1111.onrender.com/api/auth/login"
-        : "https://elon-backend-1111.onrender.com/api/auth/signup";
+        ? API_ENDPOINTS.AUTH_LOGIN
+        : API_ENDPOINTS.AUTH_SIGNUP;
 
       const payload = isLogin
         ? { email: formData.email, password: formData.password }
         : { name: formData.name, email: formData.email, password: formData.password, confirmPassword: formData.confirmPassword };
 
-      const response = await axios.post(url, payload);
+      const response = await axiosInstance.post(url, payload);
 
       if (isLogin) {
         // For login, backend sends OTP

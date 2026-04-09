@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios";
+import axiosInstance from '../../../config/axiosConfig';
 import { useNavigate, useParams } from 'react-router-dom'
+import { API_ENDPOINTS } from '../../../config/apiConfig';
 import Button from '@mui/material/Button';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -25,7 +26,7 @@ const View = () => {
   useEffect(() => {
     const getbyid = async () => {
       try {
-        const res = await axios.get(`https://elon-backend-1111.onrender.com/api/getById/${id}`)
+        const res = await axiosInstance.get(API_ENDPOINTS.GET_PRODUCT_BY_ID(id))
         setData(res.data)   
       } catch (err) {
         console.log(err)

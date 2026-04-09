@@ -3,7 +3,6 @@ import 'flowbite';
 import Searchprovider from './searchprovider';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Topbar from './components/layout/topbar'
-import Navbar from './components/layout/navbar'
 import Dropdown from './components/ui/dropdown';
 import Login from './components/pages/login';
 import Footer from './components/layout/footer';
@@ -23,8 +22,13 @@ import Kidproducts from './components/pages/kids/kidproducts';
 import Kids from './components/pages/kids/kids';
 import Home from './components/home/home';
 import Admin from './admin/admin';
+import AdminLogin from './admin/adminLogin';
 import Allproducts from './admin/allproducts';
 import Profile from './components/pages/profile';
+import Navbar from './components/layout/navbar';
+import UserNavbar from './components/layout/usernavbar';
+import AdminNavbar from './components/layout/adminnavbar';
+import ProtectedAdminRoute from './components/ProtectedAdminRoute';
 
 
 
@@ -36,11 +40,22 @@ const App = () => {
         <BrowserRouter>
           <ScrollToTop />
           <Topbar />
-          <Navbar />
+          <Navbar/>
 
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/admin-login' element={<AdminLogin />} />
+            <Route path='/admin' element={
+              <ProtectedAdminRoute>
+                <Admin />
+              </ProtectedAdminRoute>
+            } />
+            <Route path='/Allproducts' element={
+              <ProtectedAdminRoute>
+                <Allproducts />
+              </ProtectedAdminRoute>
+            } />
             <Route path='/cart' element={<Cart />} />
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/men' element={<Men />} />
@@ -56,10 +71,11 @@ const App = () => {
             <Route path='/swiper' element={<Slider />} />
             <Route path='/Kids' element={<Kids />} />
             <Route path="/Kidproducts" element={<Kidproducts />} />
-            <Route path='/admin' element={<Admin />} />
-            <Route path='/Allproducts' element={<Allproducts />} />
             <Route path='/explore' element={<Allproducts />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/usernavbar' element={<UserNavbar/>}/>
+            <Route path='/adminnavbar' element={<AdminNavbar/>}/>
+
           </Routes>
           <Footer />
         </BrowserRouter>

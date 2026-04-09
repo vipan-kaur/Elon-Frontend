@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../config/axiosConfig';
+import { API_ENDPOINTS } from '../config/apiConfig';
 
 const Admin = () => {
   const insss = "border px-2 py-2 bg-white rounded-lg";
@@ -34,7 +35,7 @@ const Admin = () => {
       formData.append("rating", product.rating);
       if (product.image) formData.append("image", product.image);
 
-      await axios.post("https://elon-backend-1111.onrender.com/api/createProduct", formData, {
+      await axiosInstance.post(API_ENDPOINTS.CREATE_PRODUCT, formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
